@@ -19,6 +19,12 @@
 #![feature(panic_info_message)]
 use core::panic::PanicInfo;
 
+#[link(name = "boot", kind = "static")]
+extern "C" {
+    /// kernel's entry point, implemented in src/arch_x86_64/boot.asm
+    fn _start() -> !;
+}
+
 /// Replaces the panic handler from the standard library which is not available
 /// when using `#![no_std]` in a binary.
 ///
