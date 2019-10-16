@@ -1,0 +1,7 @@
+[package]
+name = "myros"
+version = "0.0.1"
+authors = ["Mike Leany <55358344+mikeleany@users.noreply.github.com>"]
+edition = "2018"
+
+[dependencies]
