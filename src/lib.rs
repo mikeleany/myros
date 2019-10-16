@@ -16,3 +16,21 @@
 //! limitations under the License.
 
 #![no_std]
+#![feature(panic_info_message)]
+use core::panic::PanicInfo;
+
+/// Replaces the panic handler from the standard library which is not available
+/// when using `#![no_std]` in a binary.
+///
+/// Does not return.
+#[panic_handler]
+pub fn panic(_info: &PanicInfo) -> ! {
+    halt();
+}
+
+/// Halt execution. If halting due to a failure, use `panic` instead.
+///
+/// Does not return.
+pub fn halt() -> ! {
+    loop {}
+}
