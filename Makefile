@@ -19,3 +19,7 @@ clean:
 	cargo clean --target-dir target/$(target)
 all-clean:
 	cargo clean
+
+memory := 1024
+run: $(outdir)myros.iso
+	qemu-system-x86_64 -boot d -cdrom ${outdir}myros.iso -m ${memory}
