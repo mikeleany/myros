@@ -11,9 +11,9 @@ $(outdir)myros.iso: grub.cfg $(outdir)myros cargo-$(profile)
 $(outdir)myros: cargo-$(profile)
 
 cargo-debug:
-	cargo xbuild --target $(target).json
+	cargo build --target $(target).json
 cargo-release:
-	cargo xbuild --release --target $(target).json
+	cargo build --release --target $(target).json
 
 clean:
 	cargo clean --target-dir target/$(target)
