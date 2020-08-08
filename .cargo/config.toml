@@ -1,2 +1,4 @@
+[build]
+dep-info-basedir = "."
 [unstable]
 build-std = ["core", "compiler_builtins", "alloc"]
