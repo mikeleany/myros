@@ -1,6 +1,6 @@
 //! Build script for Myros.
 //!
-//! Copyright 2019 Mike Leany
+//! Copyright 2020 Mike Leany
 //!
 //! Licensed under the Apache License, Version 2.0 (the "License");
 //! you may not use this file except in compliance with the License.
@@ -17,5 +17,7 @@
 extern crate nasm_rs;
 
 fn main() {
-    nasm_rs::compile_library_args("libboot.a", &["src/arch_x86_64/boot.asm"], &["-felf64"]);
+    let src = "src/arch_x86_64/boot.asm";
+    println!("cargo:rerun-if-changed={}", src);
+    nasm_rs::compile_library_args("libboot.a", &[src], &["-felf64"]);
 }
