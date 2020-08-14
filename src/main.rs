@@ -19,8 +19,23 @@
 #![warn(clippy::unimplemented, clippy::todo, clippy::unwrap_used)]
 #![no_std]
 #![no_main]
-
 use core::panic::PanicInfo;
+use core::ptr::write_volatile;
+
+const BLUE: u8 = 0xb;
+struct ColoredChar(u8, u8);
+
+#[no_mangle]
+extern "C" fn main() {
+    let s = b"Welcome to Myros!";
+    let video_mem = 0xb8000 as *mut ColoredChar;
+
+    for (i, &c) in s.iter().enumerate() {
+        unsafe {
+            write_volatile(video_mem.add(i), ColoredChar(c, BLUE));
+        }
+    }
+}
 
 #[link(name = "boot", kind = "static")]
 extern "C" {
