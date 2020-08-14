@@ -29,4 +29,4 @@ If your programming experience is limited, I would highly recommend gaining more
 
 ---
 
-Next: [1. "Hello, world!"](posts/hello-world) &raquo;&raquo;&raquo;
+Next: [1. "Hello, world!"](posts/hello-world.html) &raquo;&raquo;&raquo;

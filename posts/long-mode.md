@@ -3,7 +3,7 @@ title: "2. Long Mode"
 layout: page
 nav_order: 2
 last_modified_date: 2020-08-13
-permalink: /posts/long-mode/
+permalink: /posts/long-mode.html
 ---
 
 # Long Mode
@@ -198,7 +198,7 @@ Translation from a virtual address to a physical address on the x86-64 makes use
 
 For each 4-KiB page that is mapped, an L4 table entry points to an L3 table; an L3 table entry points to an L2 table; an L2 table entry points to an L1 table; and finally, an L1 table entry points to a 4 KiB frame of physical memory, as shown in the image below.
 
-![Address translation](/images/PageMapping.png)
+![Address translation](../images/PageMapping.png)
 
 Alternatively, entries in the L2 table can point directly to large 2-MiB pages. Likewise, L3 table entries can potentially point to even larger 1-GiB pages. While these larger page sizes are generally impractical for most purposes, they a nice for mapping out large contiguous memory spaces that should always be present. We will actually make use of large 2-MiB pages to identity map a portion of the kernel's address space, and in a later post, to create a contiguous map of the entire physical address space.
 

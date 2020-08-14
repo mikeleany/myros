@@ -3,7 +3,7 @@ title: "1. \"Hello, world!\""
 layout: page
 nav_order: 1
 last_modified_date: 2020-08-11
-permalink: /posts/hello-world/
+permalink: /posts/hello-world.html
 ---
 
 # "Hello, world!"
@@ -402,4 +402,4 @@ If your test succeeded and you see "Hello, world!" printed on the screen, congra
 
 ---
 
-Next: [2. Long Mode](/posts/long-mode) &raquo;&raquo;&raquo;
+Next: [2. Long Mode](long-mode.html) &raquo;&raquo;&raquo;
