@@ -23,7 +23,7 @@ title: Myros
 description: >- # this means to ignore newlines until "baseurl:"
   My Rust Operating System
 baseurl: "/myros" # the subpath of your site, e.g. /blog
-url: "mikeleany.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "//mikeleany.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 github_username:  mikeleany
 
