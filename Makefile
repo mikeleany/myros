@@ -17,7 +17,7 @@ target := x86_64-unknown-none
 profile := debug
 outdir := target/$(target)/$(profile)/
 release-flag := --release
-flags := $($(profile)-flag) --target $(target).json
+flags := $($(profile)-flag) --target $(target).json -Z build-std=core,alloc,compiler_builtins
 
 $(outdir)myros.iso: grub.cfg $(outdir)myros
 	mkdir -p $(outdir)iso/boot/grub/

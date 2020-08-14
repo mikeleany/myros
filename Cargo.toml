@@ -4,6 +4,10 @@ version = "0.1.0-dev"
 authors = ["Mike Leany <55358344+mikeleany@users.noreply.github.com>"]
 edition = "2018"
 
+[[bin]]
+name = "myros"
+test = false
+
 [build-dependencies]
 nasm-rs = "0.1.7"
 

@@ -20,5 +20,26 @@
 #![no_std]
 #![no_main]
 
-#[allow(unused_imports, clippy::single_component_path_imports)]
-use myros;
+use core::panic::PanicInfo;
+
+#[link(name = "boot", kind = "static")]
+extern "C" {
+    /// kernel's entry point, implemented in src/arch_x86_64/boot.asm
+    fn _start() -> !;
+}
+
+/// Replaces the panic handler from the standard library which is not available
+/// when using `#![no_std]` in a binary.
+///
+/// Does not return.
+#[panic_handler]
+pub fn panic(_info: &PanicInfo) -> ! {
+    halt();
+}
+
+/// Halt execution. If halting due to a failure, use `panic` instead.
+///
+/// Does not return.
+pub fn halt() -> ! {
+    loop {}
+}
