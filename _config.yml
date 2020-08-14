@@ -37,7 +37,7 @@ search_enabled: true
 # Aux links for the upper right navigation
 aux_links:
   "MikeLeany.com":
-      - "//www.mikeleany.com/"
+      - "http://www.mikeleany.com/"
   "Mike Leany on GitHub":
       - "//github.com/mikeleany"
   "Myros on GitHub":
