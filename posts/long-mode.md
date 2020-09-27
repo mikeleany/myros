@@ -381,10 +381,10 @@ long_mode_start:
 .end:
 ```
 
-Now we add our `main` function to **src/main.rs**. We use the `#[no_mangle]` attribute to ensure that Rust leaves the symbol as `main`, instead of modifying it as it generally does. We add `extern "C"` to tell rust to use the C ABI. For the body of the function, we just print "Welcome to Myros!" to the screen as blue text.
+Now we add our `main` function to **src/main.rs**. We use the `#[no_mangle]` attribute to ensure that Rust leaves the symbol as `main`, instead of modifying it as it generally does. We add `extern "C"` to tell rust to use the C ABI. For the body of the function, we just print "Welcome to Myros!" to the screen as cyan text.
 
 ```rust
-const BLUE: u8 = 0xb;
+const CYAN: u8 = 0xb;
 struct ColoredChar(u8, u8);
 
 #[no_mangle]
@@ -394,10 +394,14 @@ extern "C" fn main() {
 
     for (i, &c) in s.iter().enumerate() {
         unsafe {
-            write_volatile(video_mem.add(i), ColoredChar(c, BLUE));
+            write_volatile(video_mem.add(i), ColoredChar(c, CYAN));
         }
     }
 }
 ```
 
 Note that even though we now have a function called `main`, we still need to keep the `#![no_main]` attribute that we added to **main.rs** in the last post. What `#![no_main]` really means is that Rust does not provide any startup code to call the `main` function. Also, there's no reason why this function has to be called `main`. We could call it whatever we want. I simply called it `main` because it serves the same purpose as a typical `main` function, whereas our assembly code serves a similar purpose to Rust's builtin startup routines.
+
+---
+
+Next: [3. Printing to the Screen](the-screen.html) &raquo;&raquo;&raquo;
