@@ -19,22 +19,25 @@
 #![warn(clippy::unimplemented, clippy::todo, clippy::unwrap_used)]
 #![no_std]
 #![no_main]
-use core::panic::PanicInfo;
-use core::ptr::write_volatile;
+#![feature(asm)]
 
-const BLUE: u8 = 0xb;
-struct ColoredChar(u8, u8);
+use core::panic::PanicInfo;
+use myros::{vga, print, println};
 
 #[no_mangle]
 extern "C" fn main() {
-    let s = b"Welcome to Myros!";
-    let video_mem = 0xb8000 as *mut ColoredChar;
+    println!("Welcome to Myros!");
 
-    for (i, &c) in s.iter().enumerate() {
-        unsafe {
-            write_volatile(video_mem.add(i), ColoredChar(c, BLUE));
+    println!();
+    for i in 0..=255 {
+        print!(" {}", char::from(vga::Glyph::from_index(i)));
+        if i % 16 == 15 {
+            println!();
         }
     }
+    println!();
+
+    panic!();
 }
 
 #[link(name = "boot", kind = "static")]
@@ -48,7 +51,8 @@ extern "C" {
 ///
 /// Does not return.
 #[panic_handler]
-pub fn panic(_info: &PanicInfo) -> ! {
+pub fn panic(info: &PanicInfo) -> ! {
+    print!("kernel {}", info);
     halt();
 }
 
@@ -56,5 +60,15 @@ pub fn panic(_info: &PanicInfo) -> ! {
 ///
 /// Does not return.
 pub fn halt() -> ! {
-    loop {}
+    loop {
+        // SAFETY: this is sound as no memory is accessed and no other code is even exectuded
+        // following this loop.
+        unsafe {
+            asm!(
+                "cli",
+                "hlt",
+                options(nomem, nostack)
+            );
+        }
+    }
 }
